@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Meteo Live</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont;
+      background: linear-gradient(#4facfe, #00f2fe);
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+    .temp {
+      font-size: 80px;
+      font-weight: 200;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="city">Meteo attuale</h1>
+<div class="temp" id="temp">--°</div>
+<p id="desc">Caricamento...</p>
+
+<script>
+navigator.geolocation.getCurrentPosition(
+  pos => {
+    const latitude = pos.coords.latitude;
+    const longitude = pos.coords.longitude;
+
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=auto`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("temp").textContent =
+          Math.round(data.current_weather.temperature) + "°";
+        document.getElementById("desc").textContent =
+          "Vento: " + data.current_weather.windspeed + " km/h";
+      });
+  },
+  err => {
+    document.getElementById("desc").textContent =
+      "Permesso posizione negato";
+  }
+);
+</script>
+
+</body>
+</html>
