@@ -384,7 +384,7 @@
       position: sticky;
       top: 0;
       z-index: 5;
-      padding: calc(var(--safe-top)+56px) 20px 8px;
+      padding: calc(var(--safe-top)+44px) 20px 8px;
       display: flex;
       align-items: center
     }
@@ -942,35 +942,27 @@
       color: var(--text)
     }
 
-    /* MOBILE NAV — visibile solo su telefono (max 768px) E solo nella detail view */
+    /* MOBILE NAV BUTTONS — solo touch */
     #mobile-nav {
+      display: none;
       position: fixed;
       right: 14px;
-      bottom: calc(var(--safe-bottom)+8px);
+      bottom: calc(var(--safe-bottom)+28px);
       z-index: 90;
       flex-direction: column;
       align-items: center;
       gap: 6px;
-      display: none;
-      /* nascosto su desktop */
+      pointer-events: none
     }
 
-    @media (max-width:768px) {
-      #mobile-nav {
-        display: flex
-      }
-
-      /* visibile su mobile */
+    #mobile-nav.on {
+      display: flex
     }
 
-    #mobile-nav.hide-nav {
-      display: none !important
-    }
-
-    /* nascosto quando non siamo in detail */
     #hourly-arrows {
       display: flex;
       gap: 6px;
+      pointer-events: all;
       opacity: 0;
       transition: opacity 0.22s;
       pointer-events: none
@@ -984,7 +976,8 @@
     #page-arrows {
       display: flex;
       flex-direction: column;
-      gap: 6px
+      gap: 6px;
+      pointer-events: all
     }
 
     .mnav {
@@ -1397,8 +1390,8 @@
     </div>
   </div>
 
-  <!-- MOBILE NAV (solo touch, solo detail view) -->
-  <div id="mobile-nav" class="hide-nav">
+  <!-- MOBILE NAV (solo touch) -->
+  <div id="mobile-nav">
     <div id="hourly-arrows">
       <button class="mnav" id="mnav-left">‹</button>
       <button class="mnav" id="mnav-right">›</button>
