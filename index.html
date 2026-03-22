@@ -943,11 +943,11 @@
     /* MOBILE NAV — visibile solo su telefono (max 768px) E solo nella detail view */
     #mobile-nav {
       position: fixed;
-      right: 14px;
-      bottom: 34px;
+      right: 12px;
+      bottom: 55px;
       z-index: 9999;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-end;
       gap: 6px;
       display: none;
     }
@@ -962,9 +962,9 @@
       display: none !important
     }
 
-    /* nascosto quando non siamo in detail */
     #hourly-arrows {
       display: flex;
+      flex-direction: row;
       gap: 6px;
       opacity: 0;
       transition: opacity 0.22s;
@@ -978,7 +978,7 @@
 
     #page-arrows {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 6px
     }
 
