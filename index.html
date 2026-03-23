@@ -1038,7 +1038,7 @@
       z-index: 201;
       display: flex;
       flex-direction: column;
-      padding: calc(var(--safe-top)+52px) 20px 20px;
+      padding: calc(var(--safe-top)+16px) 20px 20px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s
@@ -1049,17 +1049,24 @@
       pointer-events: all
     }
 
+    #search-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px
+    }
+
     #search-cancel {
-      position: absolute;
-      top: calc(var(--safe-top)+15px);
-      right: 20px;
       color: var(--accent);
       font-size: 16px;
       cursor: pointer;
-      padding: 6px
+      padding: 6px;
+      white-space: nowrap;
+      flex-shrink: 0
     }
 
     #search-input {
+      flex: 1;
       width: 100%;
       padding: 13px 18px;
       background: rgba(255, 255, 255, 0.1);
@@ -1070,7 +1077,7 @@
       font-family: var(--font);
       outline: none;
       -webkit-appearance: none;
-      appearance: none;
+      appearance: none
     }
 
     #search-input::placeholder {
@@ -1462,9 +1469,11 @@
   <!-- SEARCH -->
   <div class="modal-bg" id="search-bg"></div>
   <div id="search-modal">
-    <span id="search-cancel">Annulla</span>
-    <input id="search-input" type="text" placeholder="Cerca città…" autocomplete="off" autocorrect="off"
-      spellcheck="false" />
+    <div id="search-top">
+      <input id="search-input" type="search" placeholder="Cerca città…" autocomplete="off" autocorrect="off"
+        autocapitalize="off" spellcheck="false" />
+      <span id="search-cancel">Annulla</span>
+    </div>
     <div id="search-results"></div>
   </div>
 
